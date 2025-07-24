@@ -90,7 +90,7 @@ resultFileWalking = resultFileWalking_base;
 if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwriting by accident and save computational time and effort. Make sure to change resultFileWalking
     solver = IPOPT();
     initialGuess = resultFileStanding;
-    problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
+    problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
     resultWalking = solver.solve(problemWalking);
 
     % Save the result
@@ -145,7 +145,7 @@ trackingDataWalking = TrackingData.loadStruct(dataFileWalking);
 if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwriting by accident and save computational time and effort. Make sure to change resultFileWalking
     solver = IPOPT();
     % initialGuess = % TODO 9. add the path to the results with effort 5000 here so that it will be used as initial guess
-    problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
+    problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
     resultWalking = solver.solve(problemWalking);
 
     % Save the result
@@ -157,7 +157,7 @@ trackingDataWalking = TrackingData.loadStruct(dataFileWalking);
 if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwriting by accident and save computational time and effort. Make sure to change resultFileWalking
     solver = IPOPT();
     % initialGuess = % TODO 10. add the correct string to use the midpoint initial guess
-    problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
+    problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
     resultWalking = solver.solve(problemWalking);
 
     % Save the result
@@ -243,7 +243,7 @@ if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwritin
     solver = IPOPT();
     initialGuess = resultFileStanding;
     
-    problemWalking = ISB_tutorial.move2D_IMU_withConstraint(model,resultFileWalking, trackingDataWalking, initialGuess);
+    % TODO optional 10. Create the problem using the new function name. problemWalking = 
     resultWalking = solver.solve(problemWalking);
 
     % Save the result

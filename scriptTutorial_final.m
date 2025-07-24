@@ -90,7 +90,7 @@ resultFileWalking = resultFileWalking_base;
 if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwriting by accident and save computational time and effort. Make sure to change resultFileWalking
     solver = IPOPT();
     initialGuess = resultFileStanding;
-    problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
+    problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
     resultWalking = solver.solve(problemWalking);
 
     % Save the result
@@ -109,7 +109,7 @@ for i = 1:length(efforts)
     if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwriting by accident and save computational time and effort. Make sure to change resultFileWalking
         solver = IPOPT();
         initialGuess = resultFileStanding;
-        problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess,W);
+        problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess,W);
         resultWalking = solver.solve(problemWalking);
 
         % Save the result
@@ -145,7 +145,7 @@ trackingDataWalking = TrackingData.loadStruct(dataFileWalking);
 if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwriting by accident and save computational time and effort. Make sure to change resultFileWalking
     solver = IPOPT();
     initialGuess = [resultFileWalking_base '_Effort5000'];
-    problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
+    problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
     resultWalking = solver.solve(problemWalking);
 
     % Save the result
@@ -157,7 +157,7 @@ trackingDataWalking = TrackingData.loadStruct(dataFileWalking);
 if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwriting by accident and save computational time and effort. Make sure to change resultFileWalking
     solver = IPOPT();
     initialGuess = 'mid';
-    problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
+    problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess);
     resultWalking = solver.solve(problemWalking);
 
     % Save the result
@@ -191,7 +191,7 @@ for i = 1:length(nodes)
         else %speed up simulations
              initialGuess = [resultFileWalking_base '_nNodes' num2str(nodes(i-1))]; %unique name
         end
-        problemWalking = ISB_tutorial.move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess,nodes(i));
+        problemWalking = move2D_IMU(model,resultFileWalking, trackingDataWalking, initialGuess,nodes(i));
         resultWalking = solver.solve(problemWalking);
 
         % Save the result
@@ -231,7 +231,7 @@ trackingDataWalking = TrackingData.loadStruct(dataFileWalking);
 % Test the derivatives
 solver = IPOPT();
 initialGuess = resultFileStanding;
-problemWalkingDerTest = ISB_tutorial.move2D_IMU_withConstraint(model,resultFileWalking, trackingDataWalking, initialGuess, 4);
+problemWalkingDerTest = move2D_IMU_withConstraint(model,resultFileWalking, trackingDataWalking, initialGuess, 4);
 problemWalkingDerTest.derivativetest() 
 
 % Reload tracking data struct and create a TrackingData object
@@ -243,7 +243,7 @@ if exist([resultFileWalking '.mat'], 'file') == 0 %this way, we avoid overwritin
     solver = IPOPT();
     initialGuess = resultFileStanding;
     
-    problemWalking = ISB_tutorial.move2D_IMU_withConstraint(model,resultFileWalking, trackingDataWalking, initialGuess);
+    problemWalking = move2D_IMU_withConstraint(model,resultFileWalking, trackingDataWalking, initialGuess);
     resultWalking = solver.solve(problemWalking);
 
     % Save the result
