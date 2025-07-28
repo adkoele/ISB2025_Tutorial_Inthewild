@@ -48,7 +48,7 @@ model = Gait2dc(modelFile);
 %% Standing: Simulate standing with minimal effort without tracking data for one point in time (static)
 % Create and solve the optimization problem only when it has not yet been solved
 if exist([resultFileStanding '.mat'], 'file') == 0
-    problemStanding = ISB_tutorial.standing2D(model, resultFileStanding); %We use the same standing simulation for simlicity
+    problemStanding = standing2D(model, resultFileStanding); %We use the same standing simulation for simlicity
     solver = IPOPT();
     solver.setOptionField('max_iter', 20000);
     solver.setOptionField('tol', 0.0001);
